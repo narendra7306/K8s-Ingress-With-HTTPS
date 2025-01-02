@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sr-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTP to HTTPS redirection
+    nginx.ingress.kubernetes.io/rewrite-target: /      # Rewrite the target to the root (/) if necessary
+spec:
+  ingressClassName: nginx  # Use the NGINX Ingress controller
+  rules:
+  - host: "swiggy.seelam-dev.store"  # Specify your hostname
+    http:
+      paths:
+      - path: /
+        pathType: Prefix  # Match all requests under the root path
+        backend:
+          service:
+            name: swiggy-app  # Replace with your service name
+            port:
+              number: 80  # Replace with your service's port number
+

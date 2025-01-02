@@ -1,0 +1,20 @@
+step1: set the service Type as clusterIP in k8s service.yaml and create that service.
+
+step2: Install the nginx ingress controller in your cluster then nginx-ingress-svc will be created with one loadbalancer and check that same loadbalancer should appear in aws console of
+loadbalancer section.
+
+step3: create one DNS 'A' record in route53 and select nginx ingress controller's loadbalancer only in load balancer field.
+
+
+step4: In ACM create one certificate with *.your domain name and create CNAME record in the same certificate so that it should appear in the same hosted zone. After some time acm certificate status will be changed to "Issued" state.
+
+step5: ingress.yaml should be as below:
+       ingressClassname: nginx
+       annotations: 1.ssl-redirect: "true"   2. rewrite-target: "/"
+       host: *.yourdomainname
+
+
+step6: after creating ingress check that nginx ingress controller loadbalancer will be assigned as ADDRESS of your ingress.
+
+step7: go to load balancer section of aws console and click on listeners -> manage listeners and edit one rule as https as 443 and http as specific port of 80/specific port. you can get specific port number from kubectl get svc command on CLI and then add SSL certificate in the same rule which you created previously.
+
