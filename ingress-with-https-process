@@ -1,6 +1,6 @@
 step1: set the service Type as clusterIP in k8s service.yaml and create that service.
 
-step2: Install the nginx ingress controller in your cluster then nginx-ingress-svc will be created with one loadbalancer and check that same loadbalancer should appear in aws console of
+step2: Install the nginx ingress controller in your cluster then nginx-ingress-svc will be created with one loadbalancer in ingress-nginx namespace and check that same loadbalancer should appear in aws console of
 loadbalancer section.
 
 step3: create one DNS 'A' record in route53 and select nginx ingress controller's loadbalancer only in load balancer field.
