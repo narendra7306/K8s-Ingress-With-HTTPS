@@ -16,5 +16,5 @@ step5: ingress.yaml should be as below:
 
 step6: after creating ingress check that nginx ingress controller loadbalancer will be assigned as ADDRESS of your ingress.
 
-step7: go to load balancer section of aws console and click on listeners -> manage listeners and edit one rule as https as 443 and http as specific port of 80/specific port. you can get specific port number from kubectl get svc command on CLI and then add SSL certificate in the same rule which you created previously.
+step7: go to load balancer section of aws console and click on listeners -> manage listeners and edit one rule as https as 443 and http as specific port of 80/specific port. you can get specific port number from kubectl get svc -n ingress-nginx command on CLI and then add SSL certificate in the same rule which you created previously.
 
